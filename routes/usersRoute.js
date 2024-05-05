@@ -5,8 +5,12 @@ const Users = require("../models/userModal");
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   const newUser = new Users({ name, email, password });
-
   try {
+    // const existingUser = await Users.findOne({ email });
+    // if (existingUser) {
+    //   return res.status(400).send("User has already registered");
+    // }
+
     await newUser.save();
     res.send("User created successfully");
   } catch (error) {

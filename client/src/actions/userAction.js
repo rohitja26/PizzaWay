@@ -16,9 +16,14 @@ export const loginUser = (user) => async (dispactch) => {
   try {
     const response = await axios.post("/api/users/login", user);
     dispactch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
-    // localStorage.setItem("currentUser", JSON.stringify(response.data));
-    // window.location.href = "/";
+    localStorage.setItem("currentUser", JSON.stringify(response.data));
+    window.location.href = "/";
   } catch (error) {
     dispactch({ type: "USER_LOGIN_FAILED", payload: error });
   }
+};
+
+export const logoutUser = () => (dispactch) => {
+  localStorage.removeItem("currentUser");
+  window.location.href = "/login";
 };

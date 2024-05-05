@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pizzas from "../component/Pizzas";
 import { getAllPizzas } from "../actions/pizzaActions";
+import Loading from "../component/Loading";
+import Error from "../component/Error";
+
 export default function Homepage() {
   const pizzasState = useSelector((state) => state.getAllPizzasReducer);
 
@@ -16,9 +19,9 @@ export default function Homepage() {
     <div>
       <div className="row justify-content-center">
         {loading ? (
-          <h1>Loading....</h1>
+          <Loading />
         ) : error ? (
-          <h1>Something Went Wrong</h1>
+          <Error error="Somthing went wroing" />
         ) : (
           pizzas &&
           pizzas.map((pizza) => {

@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../actions/userAction";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
@@ -35,6 +37,7 @@ export default function Navbar() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
+                    style={{ textDecoration: "none", color: "black" }}
                   >
                     {currentUser.name}
                   </a>
@@ -46,7 +49,11 @@ export default function Navbar() {
                     <a className="dropdown-item" href="#">
                       Orders
                     </a>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      onClick={() => dispatch(logoutUser())}
+                    >
                       Log out{" "}
                       <span
                         className="material-symbols-outlined"

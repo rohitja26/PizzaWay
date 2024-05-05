@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../actions/userAction";
+import Success from "../component/Success";
+import Loading from "../component/Loading";
+import Error from "../component/Error";
 
 export default function Registerpage() {
   const [name, setName] = useState("");
@@ -8,6 +11,8 @@ export default function Registerpage() {
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
   const dispactch = useDispatch();
+  const registerState = useSelector((state) => state.registerUserReducer);
+  const { error, loading, success } = registerState;
 
   function Register() {
     if (password != cpassword) {
@@ -25,7 +30,11 @@ export default function Registerpage() {
   return (
     <div>
       <div className="row justify-content-center mt-3">
-        <div className="col-md-4 text-left">
+        <div className="col-md-4 text-left shadow-lg p-3 mb-5 bg-white rounded">
+          {loading && <Loading />}
+          {success && <Success success="User registered successfully" />}
+          {error && <Error error="Something went wrong" />}
+
           <h2 style={{ fontSize: "35px", fontWeight: "bold" }} className="m-5 ">
             Register
           </h2>
@@ -77,6 +86,16 @@ export default function Registerpage() {
                 how_to_reg
               </span>
             </button>
+            <p>
+              Click to here {"  "}
+              <a
+                href="/login"
+                className="text-danger  mx-1"
+                style={{ textDecoration: "none" }}
+              >
+                LOGIN
+              </a>
+            </p>
           </div>
         </div>
       </div>
