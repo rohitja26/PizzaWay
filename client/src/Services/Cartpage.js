@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deletFromCart } from "../actions/cartAction";
+import Checkout from "../component/Checkout";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ export default function CartPage() {
           >
             Subtotal: {subtotal} Rs./-
           </h1>
-          <button className="btn btn-outline-success mx-5">Pay Now</button>
+          <Checkout subtotal={subtotal} />
         </div>
       </div>
     </div>
