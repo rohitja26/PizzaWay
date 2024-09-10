@@ -20,7 +20,6 @@ export const addToCart = (pizza, quantity, varient) => (dispatch, getstate) => {
       });
     }
   }
-
   const cartItems = getstate().cartReducer.cartItems;
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
